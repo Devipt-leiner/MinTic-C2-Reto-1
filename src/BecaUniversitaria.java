@@ -19,11 +19,20 @@ public class BecaUniversitaria {
 
     // ACCIONES / MÉTODOS
     public String compararInversion(int pTiempo, double pMonto, double pInteres) {
-        return "";
+        this.pTiempo = pTiempo;
+        this.pMonto = pMonto;
+        this.pInteres = pInteres;
+        double diferencia = Math.round(calcularInteresCompuesto() - calcularInteresSimple());
+        return "La diferencia entre la proyección de interés compuesto e interés simple es: $" + diferencia;
     }
 
     public String compararInversion() {
-        return "";
+        if (pInteres == 0 && pTiempo == 0 && pMonto == 0) {
+            return "No se obtuvo diferencia entre las proyecciones, revisar los parámetros de entrada.";
+        } else {
+            double diferencia = Math.round(calcularInteresCompuesto() - calcularInteresSimple());
+            return "La diferencia entre la proyección de interés compuesto e interés simple es: $" + diferencia;
+        }
     }
 
     public double calcularInteresSimple() {
@@ -32,6 +41,7 @@ public class BecaUniversitaria {
     }
 
     public double calcularInteresCompuesto() {
-        return 0.0;
+        double interesCompuesto = Math.round(pMonto * ( Math.pow((1 + (pInteres/100)), pTiempo) -1 ));
+        return interesCompuesto;
     }
 }
